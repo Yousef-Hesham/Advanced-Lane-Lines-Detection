@@ -1,9 +1,5 @@
 # Advanced Lane Lines Detection
 
-A demo of the pipeline (on both the project_video and challenge_video) can be found on [Youtube](https://www.youtube.com/watch?v=leUGLrnGym4)
-
-[![Advanced Lane Tracking Video](https://img.youtube.com/vi/leUGLrnGym4/0.jpg)](https://www.youtube.com/watch?v=leUGLrnGym4)
-
 ## Project Overview
 
 ### 1.1 Goal
@@ -25,25 +21,14 @@ The goal of this project is to use traditional Computer Vision (i.e. non-machine
 
 ### 1.3 Project structure
 
-* **lane_tracker.ipynb**: Jupyter notebook with a step-by-step walkthrough of the different components of the pipeline 
 * **camera_cal/**: Folder containing a collection of chessboard images used for camera calibration and distortion correction
 * **camera_calib.p**: Pickle file containing the saved camera calibration matrix and distortion coefficients
 * **test_images/**: Folder containing a set of images for test purposes
-* **gif_images/**:
-* **readme_images**: Directory to store images used within this README.md
-* **challenge_video.mp4**: Video containing uneven road surfaces and non-uniform lighting conditions
-* **challenge_video_output.mp4**: Resulting output on passing the challenge_video through the pipeline
+* **gif_images/**: Folder to store gif images used within this README.md
+* **readme_images**: Folder to store images used within this README.md
+* **Videos**: Folder containing videos used in this project to test the algorithm.
 * **project_video.mp4**: Video with dark road surfaces and non-uniform lighting conditions
 * **project_video_output.mp4**: Resulting output on passing the project_video through the pipeline
-
-### 1.4 Usage
-
-To use the pipeline:
-* Run *Section 1* of the notebook titled *Camera Calibration and Distortion correction*. The code snippet here looks to load the *camera_calib.p* pickle file. If this is not found, then the calibration process is initiated using the chessboard images 
-located under the *camera_cal/* folder
-
-* Once the calibration process is complete, compile all the cells from *Section 2* through to *Section 9*.
-* Finally, download the video to be processed, enter its path in the code snippet in *Section 9* along with the path for the output video and run this cell.
 
 ## 2. Pipeline
 
@@ -259,15 +244,3 @@ An image processing pipeline is therefore setup that runs the steps detailed abo
 An example of a processed frame has been presented to the reader below.
 
 <img src="./readme_images/pipe8_1.png" alt="Pipeline step 8" />
-
-## 3. Reflection and Future Work
-
-This was a very tedious project which involved the tuning of several parameters by hand. With the traditional Computer Vision approach I was able to develop a strong intuition for what worked and why. I also learnt that the solutions developed through such approaches aren't very optimised and can be sensistive to the chosen parameters. As a result, I developed a strong appreciation for Deep Learning based approaches to Computer Vision. Although, they can appear as a black box at times Deep learning approaches avoid the need for fine-tuning these parameters, and are inherently more robust. 
-
-The challenges I encountered were almost exclusively due to non-uniform lighting conditions, shadows, discoloration and uneven road surfaces. Although, it wasn't difficult to select the thresholding parameters to successfully filter the lane pixels it was very time consuming. Furthermore, the two biggest problem with my pipeline that become evident in the harder challenge video are:
-
-1. Its inability to handle sharp turns and constantly changing slope of the road. This a direct consequence of the assumption made in Step 2 of the pipeline where the road in front of the vehicle is assumed to be relatively flat and straight(ish). This results in a 'static' perspective transformation matrix meaning that if the assumption doesn't hold true the lane lines will no longer be relatively parallel. As a result, it becomes a lot harder to assess the validity of the detected lane lines, because even if the lane lines in the warped image are not nearly parallel, they might still be valid lane lines. 
-
-2. Poor lane lines detection in areas of glare/ severe shadows / combination of both. This results from the failure of the thresholding function to successfully filter out the lane pixels in these extreme lighting conditions
-
-In the coming weeks, I aim to tackle these problems and improve the performance of the model on the harder challenge video.
