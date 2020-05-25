@@ -6,7 +6,6 @@ import glob
 from calibration import calibrate_camera, undistort
 from thresholding import binarize
 from prespective_view import birdeye
-from moviepy.editor import VideoFileClip
 from line_detection import get_fits_by_sliding_windows, draw_back_onto_the_road, Line, get_fits_by_previous_fits
 from globals import xm_per_pix, time_window
 
@@ -143,6 +142,9 @@ if cap.isOpened():
 # first things first: calibrate the camera, it is only done once.
 ret, mtx, dist, rvecs, tvecs = calibrate_camera(calib_images_dir='camera_cal')
 
+fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (int(video_width),int(video_height)))
+
 while(cap.isOpened()):
     ret, current_frame = cap.read() #cap.read returns a boolean, and an image [frame] currently displayed.
     if not ret:
@@ -150,9 +152,10 @@ while(cap.isOpened()):
 
     final = process_pipeline(current_frame, True)
     cv2.imshow('processesed.', final)
-
+    out.write(final)
     if cv2.waitKey(1) & 0xFF == ord('s'):
         break
 
 cap.release()
+out.release()
 cv2.destroyAllWindows()

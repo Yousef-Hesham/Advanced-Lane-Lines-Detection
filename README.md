@@ -1,6 +1,6 @@
 # Advanced Lane Lines Detection
 
-## Project Overview
+## 1 - Project Overview
 
 ### 1.1 Goal
 The goal of this project is to use traditional Computer Vision (i.e. non-machine learning) techniques to develop an advanced and robust algorithm that can detect and track lane boundaries in a video. The pipeline highlighted below was designed to operate under the following scenarios:
@@ -30,7 +30,7 @@ The goal of this project is to use traditional Computer Vision (i.e. non-machine
 * **project_video.mp4**: Video with dark road surfaces and non-uniform lighting conditions
 * **project_video_output.mp4**: Resulting output on passing the project_video through the pipeline
 
-## 2. Pipeline
+## 2 - Pipeline
 
 The various steps invovled in the pipeline are as follows, each of these has also been discussed in more detail in the sub sections below:
 
@@ -244,3 +244,12 @@ An image processing pipeline is therefore setup that runs the steps detailed abo
 An example of a processed frame has been presented to the reader below.
 
 <img src="./readme_images/pipe8_1.png" alt="Pipeline step 8" />
+
+
+## 3 - Project Output 
+
+Here's a Preview of the output:
+
+<img src="gif_omages/output.gif">
+
+You can check the full video on [Youtube here](https://www.youtube.com/watch?v=2w2LVPL80xk).
